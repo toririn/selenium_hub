@@ -1,11 +1,5 @@
 ### Setup
 
-* for vnc viewer
-
-```
-sudo apt-get install remmina
-```
-
 * for docker
 
 ```
@@ -15,9 +9,10 @@ wget -qO- https://get.docker.com/ | sh
 * deploy
 
 ```
-git clone 
+git clone https://github.com/toririn/selenium_hub.git
 cd selenium_hub/
 bash deploy.sh
+#=> pull docker image and run container
 ```
 
 ### Action!
@@ -25,26 +20,24 @@ bash deploy.sh
 * run sample test
 
 ```
+bash set_env.sh
+#=> set ENV value
 bundle exec rspec
 ```
 
 * results
 
 ```
-Randomized with seed xxxx
-
 サンプル
-  Googleを訪問できれば成功
-    もしgoogleを訪問 -> ならば成功
+  googleで検索ができること
+      もしgoogleを訪問 -> ならばgoogleのページが表示されている -> もし「長谷川豊」で検索する -> ならば検索結果のページが表示されている
 
-Top 1 slowest examples (7.83 seconds, 100.0% of total time):
-  サンプル Googleを訪問できれば成功 もしgoogleを訪問 -> ならば成功
-    7.83 seconds ./spec/features/test.feature:5
+      Top 1 slowest examples (12.96 seconds, 100.0% of total time):
+        サンプル googleで検索ができること もしgoogleを訪問 -> ならばgoogleのページが表示されている -> もし「長谷川豊」で検索する -> ならば検索結果のページが表示されている
+            12.96 seconds ./spec/features/tests/test.feature:5
 
-Finished in 7.84 seconds (files took 0.57555 seconds to load)
-1 example, 0 failures
-
-Randomized with seed xxxx
+            Finished in 12.96 seconds (files took 0.5102 seconds to load)
+            1 example, 0 failures
 ```
 
 
@@ -60,7 +53,6 @@ Errno::ECONNREFUSED:
 
 ```
 bash set_env.sh
-bundle exec rspec
 ```
 
 or
@@ -71,9 +63,3 @@ docker port selenium-hub 4444
 export SELENIUM_HUB_PORT=32700
 bundle exec rspec
 ```
-
-
-
-
-
-
